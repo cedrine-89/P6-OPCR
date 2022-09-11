@@ -1,7 +1,7 @@
 import http from "http";
 import express from "express";
 
-import router from "./route/router.js";
+import userRouter from "./route/userRouter.js";
 
 const app = express();
 app.set('port', process.env.PORT || 3000);
@@ -16,6 +16,6 @@ app.use((req,res,next) => {
     next();
 });
 
-app.use('/', router);
+app.use('/api/auth/', userRouter);
 
 export default server;
