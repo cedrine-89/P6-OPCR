@@ -1,7 +1,11 @@
+import http from "http";
 import express from "express";
+
 import router from "./route/router.js";
 
 const app = express();
+app.set('port', process.env.PORT || 3000);
+const server = http.createServer(app);
 
 app.use(express.json());
 app.use((req,res,next) => {
@@ -14,4 +18,4 @@ app.use((req,res,next) => {
 
 app.use('/', router);
 
-export default app;
+export default server;
