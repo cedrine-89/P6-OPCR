@@ -1,0 +1,20 @@
+{
+  "name": "api_hot_takes",
+  "version": "1.0.0",
+  "description": "Piiquante, wants to develop a hot sauce review web application called “Hot Takes”",
+  "main": "main.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Roy Stéphanie For Piiquante",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.6.0",
+    "mongoose-errors": "^1.1.2",
+    "mongoose-unique-validator": "^3.1.0"
+  }
+}
