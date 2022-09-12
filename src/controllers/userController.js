@@ -1,6 +1,9 @@
 import UserSchema from "../models/UserSchema.js";
 import argon2 from "argon2";
 import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 export const signupController = (req, res, next) => {
     argon2.hash(req.body.password)
@@ -35,7 +38,7 @@ export const loginController = (req, res, next) => {
                         // TODO Create JWT
                         token: jwt.sign(
                             { userId: userInDatabase._id },
-                            '/*\\_!SECRET_PASSWORD_FOR_JSONWEBTOKEN_FOR_PIIQUANTE_!/*\\',
+                            process.env.SECRETJWT,
                             { expiresIn: '24h' }
                         )
                     });
