@@ -2,6 +2,7 @@ import http from "http";
 import express from "express";
 
 import userRouter from "./route/userRouter.js";
+import sauceCrudRouter from "./route/sauceCrudRouter.js";
 
 const app = express();
 app.set('port', process.env.PORT || 3000);
@@ -17,5 +18,6 @@ app.use((req,res,next) => {
 });
 
 app.use('/api/auth/', userRouter);
+app.use('/api/', sauceCrudRouter);
 
 export default server;
