@@ -1,7 +1,6 @@
 import SauceSchema from "../models/SauceSchema.js";
 
 export const createSauce = (req, res, next) => {
-    console.log(req.body)
     const saucePost = JSON.parse(req.body.sauce);
     delete saucePost.userId;
 
@@ -30,5 +29,20 @@ export const readSauce = (req, res, next) => {
 export const readAllSauce = (req, res, next) => {
     SauceSchema.find()
         .then(data => res.status(200).json(data))
+        .catch(error => res.status(404).json({ error }));
+}
+
+export const updateSauce = (req, res, next) => {
+    let body = {};
+
+    if (req.file) {
+        body = JSON.parse(req.body.sauce);
+        body.imageUrl = `${req.protocol}://${req.get('host')}/images/${req.file.filename}`;
+    } else {
+        body = req.body;
+    }
+
+    SauceSchema.updateOne({ _id: req.params.id }, { ...body, _id: req.params.id })
+        .then(() => res.status(200).json({ message: "Sauce modifier !"}))
         .catch(error => res.status(404).json({ error }));
 }
