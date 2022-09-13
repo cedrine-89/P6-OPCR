@@ -36,7 +36,6 @@ export const loginController = (req, res, next) => {
 
                     res.status(200).json({
                         userId: userInDatabase._id,
-                        // TODO Create JWT
                         token: jwt.sign(
                             { userId: userInDatabase._id },
                             process.env.SECRETJWT,
