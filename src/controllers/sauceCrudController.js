@@ -5,11 +5,10 @@ export const createSauce = (req, res, next) => {
     const saucePost = JSON.parse(req.body.sauce);
     delete saucePost.userId;
 
-    // TODO Create imageUrl with data send req.body
     // TODO Create rename special character
     const sauce = new SauceSchema({
         ...saucePost,
-        imageUrl: 'http://test',
+        imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`,
         likes: 0,
         dislikes: 0,
         usersLiked: [],
@@ -19,11 +18,17 @@ export const createSauce = (req, res, next) => {
 
     sauce.save()
         .then(() => res.status(201).json({ message: "Sauce enregistrée !"}))
-        .catch(error => res.status(400).json({ message: error }));
+        .catch(error => res.status(400).json({ error }));
 }
 
 export const readSauce = (req, res, next) => {
-    const sauces = SauceSchema.find({})
+    SauceSchema.findOne({ _id: req.params.id })
         .then(data => res.status(200).json(data))
-        .catch(error => res.status(404).json({ message: error }));
+        .catch(error => res.status(404).json({ error }));
+}
+
+export const readAllSauce = (req, res, next) => {
+    SauceSchema.find()
+        .then(data => res.status(200).json(data))
+        .catch(error => res.status(404).json({ error }));
 }
