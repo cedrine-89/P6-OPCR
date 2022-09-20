@@ -6,6 +6,7 @@ dotenv.config();
 // Middleware authenticator
 export const auth = (req, res, next) => {
     try {
+        // Intercept Header send Authorization
         const jwtToken = req.headers.authorization.split(' ')[1];
         const decodedToken = jwt.verify(jwtToken, process.env.SECRETJWT);
         const userId = decodedToken.userId;
