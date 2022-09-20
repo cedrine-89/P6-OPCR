@@ -13,6 +13,7 @@ const storage = multer.diskStorage({
     filename: (req, file, cb) => {
         const nameFile = file.originalname.split(' ').join('_').split('.')[0];
         const extFile = MIMETYPES[file.mimetype];
+        // Create filename with timestamp
         cb(null, `${nameFile}-${Date.now()}.${extFile}`);
     }
 });
