@@ -6,6 +6,7 @@ import express from "express";
 import userRouter from "./route/userRouter.js";
 import sauceCrudRouter from "./route/sauceCrudRouter.js";
 
+// Dirname of static file express
 const __dirname = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 const app = express();
 app.set('port', process.env.PORT || 3000);

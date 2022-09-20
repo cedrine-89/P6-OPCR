@@ -26,13 +26,13 @@ export const loginController = (req, res, next) => {
     UserSchema.findOne({ email: req.body.email })
         .then(userInDatabase => {
             if (!userInDatabase) {
-                return res.status(401).json({ message: "Information de connexion invalide !" })
+                return res.status(401).json({ message: "Information de connexion invalide !" });
             }
 
             argon2.verify(userInDatabase.password, req.body.password)
                 .then(valid => {
                     if (!valid) {
-                        return res.status(401).json({ message: "Information de connexion invalide !" })
+                        return res.status(401).json({ message: "Information de connexion invalide !" });
                     }
 
                     res.status(200).json({
