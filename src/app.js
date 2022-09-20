@@ -11,6 +11,7 @@ const app = express();
 app.set('port', process.env.PORT || 3000);
 const server = http.createServer(app);
 
+// Middleware General
 app.use(express.json());
 app.use((req,res,next) => {
     res.set('Access-Control-Allow-Origin', 'http://localhost:4200');
@@ -20,8 +21,11 @@ app.use((req,res,next) => {
     next();
 });
 
+// Path static images
 app.use('/images', express.static(__dirname + '/images'));
+// Path Authenticator
 app.use('/api/auth/', userRouter);
+// Path CRUD Sauces
 app.use('/api/', sauceCrudRouter);
 
 export default server;

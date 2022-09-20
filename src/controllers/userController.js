@@ -1,4 +1,4 @@
-import UserSchema from "../models/UserSchema.js";
+import UserSchema from "./../models/UserSchema.js";
 import argon2 from "argon2";
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
@@ -6,6 +6,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 export const signupController = (req, res, next) => {
+    // TODO Validator DATA Form
     // Hash Password in request POST
     argon2.hash(req.body.password)
         .then(hashPassword => {

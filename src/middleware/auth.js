@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
+// Middleware authenticator
 export const auth = (req, res, next) => {
     try {
         const jwtToken = req.headers.authorization.split(' ')[1];

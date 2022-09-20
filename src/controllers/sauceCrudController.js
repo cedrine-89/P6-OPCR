@@ -1,4 +1,4 @@
-import SauceSchema from "../models/SauceSchema.js";
+import SauceSchema from "./../models/SauceSchema.js";
 
 export const createSauce = (req, res, next) => {
     const saucePost = JSON.parse(req.body.sauce);
