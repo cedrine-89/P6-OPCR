@@ -1,4 +1,5 @@
 import SauceSchema from "./../models/SauceSchema.js";
+import {Query} from "mongoose";
 
 export const createSauce = (req, res, next) => {
     const saucePost = JSON.parse(req.body.sauce);
@@ -43,6 +44,12 @@ export const updateSauce = (req, res, next) => {
     }
 
     SauceSchema.updateOne({ _id: req.params.id }, { ...body, _id: req.params.id })
-        .then(() => res.status(200).json({ message: "Sauce modifier !"}))
+        .then(() => res.status(200).json({ message: "Sauce modifiée !"}))
+        .catch(error => res.status(404).json({ error }));
+}
+
+export const deleteSauce = (req, res) => {
+    SauceSchema.deleteOne({ _id: req.params.id })
+        .then(() => res.status(200).json({ message: "Sauce supprimée !"}))
         .catch(error => res.status(404).json({ error }));
 }
