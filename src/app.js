@@ -4,7 +4,7 @@ import { fileURLToPath } from 'url';
 import express from "express";
 
 import userRouter from "./route/userRouter.js";
-import sauceCrudRouter from "./route/sauceCrudRouter.js";
+import sauceRouter from "./route/sauceRouter.js";
 
 // Dirname of static file express
 const __dirname = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
@@ -27,6 +27,6 @@ app.use('/images', express.static(__dirname + '/images'));
 // Path Authenticator
 app.use('/api/auth/', userRouter);
 // Path CRUD Sauces
-app.use('/api/', sauceCrudRouter);
+app.use('/api/', sauceRouter);
 
 export default server;
