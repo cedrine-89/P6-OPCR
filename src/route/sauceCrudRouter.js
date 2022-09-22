@@ -1,5 +1,5 @@
 import express from "express";
-import { createSauce, readAllSauce, readSauce, updateSauce, deleteSauce } from "./../controllers/sauceCrudController.js";
+import { createSauce, readAllSauce, readSauce, updateSauce, deleteSauce } from "./../controllers/sauceController.js";
 import { auth } from "./../middleware/auth.js";
 import multerConfig from "./../middleware/multerConfig.js";
 

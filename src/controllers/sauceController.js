@@ -1,5 +1,4 @@
 import SauceSchema from "./../models/SauceSchema.js";
-import {Query} from "mongoose";
 
 export const createSauce = (req, res, next) => {
     const saucePost = JSON.parse(req.body.sauce);
