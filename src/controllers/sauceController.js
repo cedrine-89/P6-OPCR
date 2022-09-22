@@ -1,6 +1,6 @@
 import SauceSchema from "./../models/SauceSchema.js";
 
-export const createSauce = (req, res, next) => {
+export const createSauce = (req, res) => {
     const saucePost = JSON.parse(req.body.sauce);
     delete saucePost.userId;
 
@@ -20,19 +20,19 @@ export const createSauce = (req, res, next) => {
         .catch(error => res.status(400).json({ error }));
 }
 
-export const readSauce = (req, res, next) => {
+export const readSauce = (req, res) => {
     SauceSchema.findOne({ _id: req.params.id })
         .then(data => res.status(200).json(data))
         .catch(error => res.status(404).json({ error }));
 }
 
-export const readAllSauce = (req, res, next) => {
+export const readAllSauce = (req, res) => {
     SauceSchema.find()
         .then(data => res.status(200).json(data))
         .catch(error => res.status(404).json({ error }));
 }
 
-export const updateSauce = (req, res, next) => {
+export const updateSauce = (req, res) => {
     let body = {};
 
     if (req.file) {

@@ -5,7 +5,7 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-export const signupController = (req, res, next) => {
+export const signupController = (req, res) => {
     // TODO Validator DATA Form
     // Hash Password in request POST
     argon2.hash(req.body.password)
@@ -22,7 +22,7 @@ export const signupController = (req, res, next) => {
         .catch(error => res.status(500).json({ error }));
 }
 
-export const loginController = (req, res, next) => {
+export const loginController = (req, res) => {
     UserSchema.findOne({ email: req.body.email })
         .then(userInDatabase => {
             if (!userInDatabase) {
