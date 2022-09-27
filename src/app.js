@@ -10,7 +10,6 @@ import sauceRouter from "./route/sauceRouter.js";
 const __dirname = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 const app = express();
 app.set('port', process.env.PORT || 3000);
-const server = http.createServer(app);
 
 // Middleware General
 app.use(express.json());
@@ -29,4 +28,5 @@ app.use('/api/auth/', userRouter);
 // Path CRUD Sauces
 app.use('/api/', sauceRouter);
 
+const server = http.createServer(app);
 export default server;
