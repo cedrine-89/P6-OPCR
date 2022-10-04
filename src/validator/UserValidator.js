@@ -12,11 +12,11 @@ export default class UserValidator {
     };
 
     constructor(user) {
-        this.validEmpty(user.email, 'email');
-        this.validEmpty(user.password, 'password');
+        this.#validEmpty(user.email, 'email');
+        this.#validEmpty(user.password, 'password');
         // Control Email is not empty for test is valid
         if (!this.valid.message.find(m => m === 'email vide')) {
-            this.validEmail(user.email);
+            this.#validEmail(user.email);
         }
     }
 
@@ -24,7 +24,7 @@ export default class UserValidator {
      * Validator Email format to RegExp
      * @param value
      */
-    validEmail(value) {
+    #validEmail(value) {
         if (!this.#regExpEmail.test(value)) {
             this.valid.success = false;
             this.valid.message.push('email invalid');
@@ -36,7 +36,7 @@ export default class UserValidator {
      * @param value
      * @param id
      */
-    validEmpty(value, id) {
+    #validEmpty(value, id) {
         if (value === ' ') {
             this.valid.success = false;
             this.valid.message.push(`${id} vide`);
