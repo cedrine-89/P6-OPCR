@@ -69,6 +69,6 @@ export const loginController = (req, res) => {
             })
             .catch(error => res.status(500).json({ error }));
     } else {
-        res.status(422).json({ error: validator.valid.message });
+        res.status(422).json({ error: validator.valid.message.toString() });
     }
 }
