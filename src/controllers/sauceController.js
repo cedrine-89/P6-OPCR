@@ -4,7 +4,6 @@ export const createSauce = (req, res) => {
     const saucePost = JSON.parse(req.body.sauce);
     delete saucePost.userId;
 
-    // TODO Create rename special character
     const sauce = new SauceSchema({
         ...saucePost,
         imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`,
