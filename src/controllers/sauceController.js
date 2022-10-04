@@ -1,5 +1,10 @@
 import SauceSchema from "./../models/SauceSchema.js";
 
+/**
+ * Controller CreateSauce => Create Sauce in Database
+ * @param req
+ * @param res
+ */
 export const createSauce = (req, res) => {
     const saucePost = JSON.parse(req.body.sauce);
     delete saucePost.userId;
@@ -15,22 +20,37 @@ export const createSauce = (req, res) => {
     });
 
     sauce.save()
-        .then(() => res.status(201).json({ message: "Sauce enregistrée !"}))
+        .then(() => res.status(201).json({ message: "Sauce enregistrée !" }))
         .catch(error => res.status(400).json({ error }));
 }
 
+/**
+ * Controller ReadSauce => Get One Sauce in Database
+ * @param req
+ * @param res
+ */
 export const readSauce = (req, res) => {
     SauceSchema.findOne({ _id: req.params.id })
         .then(data => res.status(200).json(data))
         .catch(error => res.status(404).json({ error }));
 }
 
+/**
+ * Controller ReadAllSauce => Get All Sauce in Database
+ * @param req
+ * @param res
+ */
 export const readAllSauce = (req, res) => {
     SauceSchema.find()
         .then(data => res.status(200).json(data))
         .catch(error => res.status(404).json({ error }));
 }
 
+/**
+ * Controller UpdateSauce => Update one Sauce in Database
+ * @param req
+ * @param res
+ */
 export const updateSauce = (req, res) => {
     let body = {};
 
@@ -42,12 +62,17 @@ export const updateSauce = (req, res) => {
     }
 
     SauceSchema.updateOne({ _id: req.params.id }, { ...body, _id: req.params.id })
-        .then(() => res.status(200).json({ message: "Sauce modifiée !"}))
+        .then(() => res.status(200).json({ message: "Sauce modifiée !" }))
         .catch(error => res.status(404).json({ error }));
 }
 
+/**
+ * Controller DeleteSauce => Delete one Sauce in database
+ * @param req
+ * @param res
+ */
 export const deleteSauce = (req, res) => {
     SauceSchema.deleteOne({ _id: req.params.id })
-        .then(() => res.status(200).json({ message: "Sauce supprimée !"}))
+        .then(() => res.status(200).json({ message: "Sauce supprimée !" }))
         .catch(error => res.status(404).json({ error }));
 }

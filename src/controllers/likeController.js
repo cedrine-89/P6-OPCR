@@ -44,6 +44,12 @@ async function deleteDisLike(id, like, userId) {
     return SauceSchema.updateOne({_id: id}, { $inc: { dislikes: like }, $pull: { usersDisliked: userId }, _id: id });
 }
 
+/**
+ * Controller LikeSauce
+ * @param req
+ * @param res
+ * @returns {Promise<void>}
+ */
 export const likeSauce = async (req, res) => {
     const id = req.params.id;
     const userId = req.body.userId;

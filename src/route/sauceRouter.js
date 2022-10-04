@@ -5,7 +5,10 @@ import { likeSauce } from "../controllers/likeController.js";
 import multerConfig from "./../middleware/multerConfig.js";
 
 const sauceRouter = express.Router();
-// TODO Create validator name file special character
+
+/**
+ * CRUD : Routes Sauces
+ */
 sauceRouter.post('/sauces', auth, multerConfig, createSauce);
 sauceRouter.get('/sauces', auth, readAllSauce);
 sauceRouter.get('/sauces/:id', auth, readSauce);

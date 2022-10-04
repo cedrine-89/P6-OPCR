@@ -6,6 +6,11 @@ import UserValidator from "../validator/UserValidator.js";
 
 dotenv.config();
 
+/**
+ * Controller Signup => Register user in Database
+ * @param req
+ * @param res
+ */
 export const signupController = (req, res) => {
     // Hash Password in request POST
     const validator = new UserValidator(req.body);
@@ -28,6 +33,11 @@ export const signupController = (req, res) => {
     }
 }
 
+/**
+ * Controller Login => Login user exist in Database
+ * @param req
+ * @param res
+ */
 export const loginController = (req, res) => {
     const validator = new UserValidator(req.body);
 

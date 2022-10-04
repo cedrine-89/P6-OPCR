@@ -3,6 +3,9 @@ import { signupController, loginController } from "./../controllers/userControll
 
 const userRouter = express.Router();
 
+/**
+ * Route User Signup and Login
+ */
 userRouter.post('/signup', signupController);
 userRouter.post('/login', loginController);
 
