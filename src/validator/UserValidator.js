@@ -14,11 +14,16 @@ export default class UserValidator {
     constructor(user) {
         this.validEmpty(user.email, 'email');
         this.validEmpty(user.password, 'password');
+        // Control Email is not empty for test is valid
         if (!this.valid.message.find(m => m === 'email vide')) {
             this.validEmail(user.email);
         }
     }
 
+    /**
+     * Validator Email format to RegExp
+     * @param value
+     */
     validEmail(value) {
         if (!this.#regExpEmail.test(value)) {
             this.valid.success = false;
@@ -26,6 +31,11 @@ export default class UserValidator {
         }
     }
 
+    /**
+     * Validator is not empty
+     * @param value
+     * @param id
+     */
     validEmpty(value, id) {
         if (value === ' ') {
             this.valid.success = false;
