@@ -14,7 +14,6 @@ dotenv.config();
 export const signupController = (req, res) => {
     // Hash Password in request POST
     const validator = new UserValidator(req.body);
-    console.log(validator)
     if (validator.valid.success === true) {
         argon2.hash(req.body.password)
             .then(hashPassword => {
