@@ -12,8 +12,9 @@ dotenv.config();
  * @param res
  */
 export const signupController = (req, res) => {
-    // Hash Password in request POST
+    // Validator data in request body
     const validator = new UserValidator(req.body);
+    // Hash Password in request POST
     if (validator.valid.success === true) {
         argon2.hash(req.body.password)
             .then(hashPassword => {
@@ -38,6 +39,7 @@ export const signupController = (req, res) => {
  * @param res
  */
 export const loginController = (req, res) => {
+    // Validator data in request body
     const validator = new UserValidator(req.body);
 
     if (validator.valid.success === true) {
@@ -46,13 +48,14 @@ export const loginController = (req, res) => {
                 if (!userInDatabase) {
                     return res.status(401).json({ message: "Information de connexion invalide !" });
                 }
-
+                // Verify HashPassword in database if equal request body password
                 argon2.verify(userInDatabase.password, req.body.password)
                     .then(valid => {
                         if (!valid) {
                             return res.status(401).json({ message: "Information de connexion invalide !" });
                         }
 
+                        // Sign Json Web Token
                         res.status(200).json({
                             userId: userInDatabase._id,
                             token: jwt.sign(
