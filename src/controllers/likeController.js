@@ -52,7 +52,7 @@ async function deleteDisLike(id, like, userId) {
  */
 export const likeSauce = async (req, res) => {
     const id = req.params.id;
-    const userId = req.body.userId;
+    const userId = req.auth.userId;
     const sauceDB = await SauceSchema.findOne({ _id: id });
     // Array userLiked
     const usersLiked = sauceDB.usersLiked;
