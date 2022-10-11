@@ -1,10 +1,10 @@
 /**
- * UserValidator
+ * UserFormValidator
  * Valid is not Empty
  * Valid Email format
  * IF Error => Push message in valid.message[]
  */
-export default class UserValidator {
+export default class UserFormValidator {
     #regExpEmail = new RegExp(/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/);
     valid = {
         success: true,

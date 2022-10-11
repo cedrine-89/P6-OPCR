@@ -2,7 +2,7 @@ import UserSchema from "./../models/UserSchema.js";
 import argon2 from "argon2";
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
-import UserValidator from "../validator/UserValidator.js";
+import UserFormValidator from "../validator/UserFormValidator.js";
 
 dotenv.config();
 
@@ -13,7 +13,7 @@ dotenv.config();
  */
 export const signupController = (req, res) => {
     // Validator data in request body
-    const validator = new UserValidator(req.body);
+    const validator = new UserFormValidator(req.body);
     // Hash Password in request POST
     if (validator.valid.success === true) {
         argon2.hash(req.body.password)
@@ -40,7 +40,7 @@ export const signupController = (req, res) => {
  */
 export const loginController = (req, res) => {
     // Validator data in request body
-    const validator = new UserValidator(req.body);
+    const validator = new UserFormValidator(req.body);
 
     if (validator.valid.success === true) {
         UserSchema.findOne({ email: req.body.email })
