@@ -5,7 +5,7 @@
   "main": "main.js",
   "type": "module",
   "scripts": {
-    "start": "nodemon main"
+    "start": "node main"
   },
   "keywords": [],
   "author": "Roy Stéphanie For Piiquante",
